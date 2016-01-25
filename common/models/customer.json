@@ -1,0 +1,42 @@
+{
+  "name": "customer",
+  "base": "PersistedModel",
+  "strict": false,
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "id": {
+      "type": "number",
+      "id": true
+    },
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "apellido": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "address": {
+      "type": "embedsMany",
+      "model": "address",
+      "property": "billingAddress",
+      "options": {
+        "validate": true,
+        "forceId": true
+      }
+    },
+    "orders": {
+      "type": "hasMany",
+      "model": "order",
+      "foreignKey":"customer_id"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}
